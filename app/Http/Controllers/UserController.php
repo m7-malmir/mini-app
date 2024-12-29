@@ -11,11 +11,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = \App\Models\User::all();  // گرفتن تمام کاربران
-        return view('users.index', compact('users'));  // ارسال داده به view
-    }
-
-
+        $users = \App\Models\User::with('posts')->get();
+        return view('users.index', compact('users'));
+    }    
     /**
      * Show the form for creating a new resource.
      *
