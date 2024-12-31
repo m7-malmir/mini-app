@@ -13,6 +13,12 @@ class PostController extends Controller
         $posts = Auth::user()->posts; 
         return view('posts.index', compact('posts'));
     }
+    public function index()
+    {
+        $posts = Post::with('user')->get(); // گرفتن همه پست‌ها همراه با اطلاعات کاربر
+        return view('posts.index', compact('posts'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
